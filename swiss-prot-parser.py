@@ -4,7 +4,7 @@ import sys
 def print_help():
     help_message = """
     Swiss-Prot-Parser Help:
-    Usage: python swiss-prot-parser.py [Input_File] [-Key SearchTerm] ... [Output_File]
+    Usage: python swiss-prot-parser.py [Input_File] [-Key] [SearchTerm] ... [Output_File]
     
     Examples:
     - python swiss-prot-parser.py swissprot.dat.txt -AC Q197F8 output.txt
@@ -30,6 +30,7 @@ if "--help" in sys.argv:
 
 
 def search_entries(input_file_path, search_terms, output_file_path):
+    number_of_entries = 0
     entries_found = False
     with open(input_file_path, "r") as file, open(output_file_path, "w") as output_file:
         entry = ""
@@ -41,6 +42,7 @@ def search_entries(input_file_path, search_terms, output_file_path):
                 if all(search_term in sections[key] for key, search_term in search_terms.items()):
                     output_file.write(entry + "//" + "\n")
                     entries_found = True
+                    number_of_entries += 1
 
                 entry = ""
                 sections = {key: "" for key in search_terms}
@@ -58,8 +60,10 @@ def search_entries(input_file_path, search_terms, output_file_path):
 
     if not entries_found:
         print("No matching entries found!")
+    elif number_of_entries == 1:
+        print("1 entry saved!")
     else:
-        print("Entries saved!")
+        print(f"{number_of_entries} entries saved!")
 
 
 # Read input parameter
