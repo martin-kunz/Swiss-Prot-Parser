@@ -1,9 +1,28 @@
+# <ins>Swiss-Prot Parser</ins>
 
+#### <ins>Description:</ins>
+This Swiss-Prot Parser is a tool designed to help in extracting specific data entries from protein sequence files ([Swiss-Prot Download](https://www.uniprot.org/help/downloads)). It was developed to assist in my Bachelor's research tasks, enabling quick and efficient data extraction. This tool offers customizable search functionality and the ability to generate output files, making it an invaluable asset for biological data analysis.<br><br>
 
+#### <ins>Features:</ins>
+- Extract specific data entries from `.dat.txt` files in the Swiss-Prot format.
+- Customizable search across different entry types (e.g., ID, SQ, OH).
+- Ability to output results to a specified file.
+- User-friendly command-line interface.<br><br>
 
+#### <ins>Installation:</ins>
+1. Ensure ```Python``` is installed on your system.
+2. No external packages are required for this tool, as it only uses the built-in ```sys``` module, making it lightweight and easy to run.<br><br>
 
+#### <ins>Usage:</ins>
+Run the script from the command line by providing the path to the data file, search parameters, and output file path. Here are some examples:
 
-#### Example entry:
+- ```python swiss-prot-parser.py .\data\swissprot.dat.txt -AC Q197F8 .\data\output.dat.txt```
+<br>In this example, all entries in which the lines AC contain ```Q197F8``` are returned. As AC is the Accession Number and is unique, only a single entry is returned.
+The input file here is ```swissprot.dat.txt``` in the folder ```data```. The entries found are stored in the ```data``` folder under ```output.dat.txt```<br><br>
+- ```python swiss-prot-parser.py .\data\swissprot.dat.txt -SQ MASNTV -OH "Aedes vexans" .\data\output.dat.txt```
+<br>In this example, all entries are returned that contain the sequence (SQ) MASNTV and whose organism host (OH) is Aedes vexans.<br><br>
+
+#### <ins>Example entry:</ins>
 ```
 ID   002R_IIV3               Reviewed;         458 AA.
 AC   Q197F8;

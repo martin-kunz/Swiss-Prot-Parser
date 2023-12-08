@@ -30,6 +30,23 @@ if "--help" in sys.argv:
 
 
 def search_entries(input_file_path, search_terms, output_file_path):
+    """
+    Searches for specific entries in a Swiss-Prot formatted file based on given search criteria and writes matching entries to an output file.
+
+    @param input_file_path: str
+        The path to the Swiss-Prot formatted file to be searched.
+
+    @param search_terms: dict
+        A dictionary where each key is a data entry field (like 'SQ', 'ID', 'AC') and the corresponding value is the search term for that field.
+        The method searches for entries that contain all specified search terms in their respective fields.
+
+    @param output_file_path: str
+        The path to the file where matching entries will be written. If entries are found, they are written to this file, each followed by '//'.
+
+    @return: None
+        This method does not return anything. It writes matching entries to the specified output file and prints the number of entries found and saved.
+        If no matching entries are found, it prints "No matching entries found!".
+    """
     number_of_entries = 0
     entries_found = False
     with open(input_file_path, "r") as file, open(output_file_path, "w") as output_file:
